@@ -38,8 +38,3 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
-
-    def is_owner(self, user):
-        if self.owner == user:
-            return True
-        return False
