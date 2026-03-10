@@ -18,10 +18,20 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import (
     TokenObtainPairView, TokenBlacklistView, TokenRefreshView
 )
+from rest_framework.permissions import IsAuthenticated
+
 
 urlpatterns = [
-    path('task/', include('tasks.urls')),
+    path('task/', include('task.urls')),
     path("auth/login/", TokenObtainPairView.as_view(), name="login"),
-    path("auth/logout/", TokenBlacklistView.as_view(), name="logout"),
-    path("auth/refresh/", TokenRefreshView.as_view(), name="refresh"),
+    path(
+        "auth/logout/",
+        TokenBlacklistView.as_view(permission_classes=[IsAuthenticated]),
+        name="logout"
+    ),
+    path(
+        "auth/refresh/",
+        TokenRefreshView.as_view(permission_classes=[IsAuthenticated]),
+        name="refresh"
+    ),
 ]
