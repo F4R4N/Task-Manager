@@ -3,18 +3,18 @@ from django.contrib.auth.models import User
 
 
 class Task(models.Model):
-    STATUS_CHOICES = [
-        ("todo", "Todo"),
-        ("in_progress", "In Progress"),
-        ("done", "Done")
-    ]
+
+    class Status(models.TextChoices):
+        TODO = "todo", "Todo"
+        IN_PROGRESS = "in_progress", "In Progress"
+        DONE = "done", "Done"
     title = models.CharField(
         max_length=50
     )
     description = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(
-        max_length=20, choices=STATUS_CHOICES, default="todo"
+        max_length=20, choices=Status.choices, default=Status.TODO
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
