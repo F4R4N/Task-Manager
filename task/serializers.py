@@ -1,23 +1,28 @@
 from rest_framework import serializers
+from django.contrib.auth import get_user_model
 from .models import Task
+
+User = get_user_model()
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "username", "email"]
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    is_owner = serializers.SerializerMethodField()
+    owner = UserSerializer(read_only=True)
+    assignee = UserSerializer(read_only=True)
+    assignee_id = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        source="assignee",
+        write_only=True,
+        required=False,
+        allow_null=True
+    )
 
     class Meta:
         model = Task
-        fields = (
-            "title",
-            "description",
-            "is_owner",
-            "status",
-            "assignee",
-            "priority",
-            "created_at",
-            "updated_at",
-        )
-
-    def get_is_owner(self, obj):
-        request = self.context.get("request")
-        return request.user == obj.owner
+        fields = "__all__"
+        read_only_fields = ["owner", "created_at", "updated_at"]
