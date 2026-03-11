@@ -15,23 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView, TokenBlacklistView, TokenRefreshView
-)
-from rest_framework.permissions import IsAuthenticated
-
 
 urlpatterns = [
     path('task/', include('task.urls')),
-    path("auth/login/", TokenObtainPairView.as_view(), name="login"),
-    path(
-        "auth/logout/",
-        TokenBlacklistView.as_view(permission_classes=[IsAuthenticated]),
-        name="logout"
-    ),
-    path(
-        "auth/refresh/",
-        TokenRefreshView.as_view(permission_classes=[IsAuthenticated]),
-        name="refresh"
-    ),
+    path("auth/", include("customauth.urls"),)
 ]
