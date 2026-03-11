@@ -147,3 +147,4 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 
 }
+GRAVATAR_URL = "https://www.gravatar.com/avatar/"
