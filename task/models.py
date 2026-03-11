@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Task(models.Model):
@@ -19,7 +21,9 @@ class Task(models.Model):
     )
     description = models.TextField()
     owner = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="task_owner_set"
+        User,
+        on_delete=models.CASCADE,
+        related_name="task_owner_set"
     )
     status = models.CharField(
         max_length=20, choices=Status.choices, default=Status.TODO
