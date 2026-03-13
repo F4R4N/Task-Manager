@@ -1,0 +1,33 @@
+.logo {
+    width: 40px;
+    height: auto;
+}
+
+.navbar {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.387);
+}
+
+.navbar>* {
+    margin: 10px 20px;
+
+}
+
+.login-btn {
+    text-decoration: none;
+    display: block;
+    border: 1px solid rgba(128, 128, 128, 0.387);
+    border-radius: 6px;
+    padding: 5px 15px;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(30, 36, 46);
+    color: #aaa;
+}
+
+.login-btn:hover {
+    color: #fff;
+}
+
+.logo-container {
+    text-decoration: none;
+}

@@ -1,6 +1,18 @@
 import { fetchWithAuth } from "../../js/api.js";
+import { renderUserMenu } from "../userMenu/userMenu.js";
+
+function loadCSS() {
+    if (!document.getElementById("navbar")) {
+        const link = document.createElement("link");
+        link.id = "navbar";
+        link.rel = "stylesheet";
+        link.href = "components/navbar/navbar.css";
+        document.head.appendChild(link);
+    }
+}
 
 export async function loadNavbar() {
+    loadCSS();
     try {
         const response = await fetch('components/navbar/navbar.html');
         const html = await response.text();
@@ -11,6 +23,7 @@ export async function loadNavbar() {
 }
 
 export async function renderUserNavbar() {
+    
     const container = document.getElementById("navbar-user");
 
     try {
@@ -22,12 +35,7 @@ export async function renderUserNavbar() {
 
         const user = await res.json();
 
-        container.innerHTML = `
-            <a class="user-info">
-                <img src="${user.gravatar}" class="avatar">
-                <span class="username">${user.username}</span>
-            </a>
-        `;
+        renderUserMenu(container, user);
 
     } catch (err) {
 
