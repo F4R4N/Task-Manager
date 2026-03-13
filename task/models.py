@@ -23,16 +23,16 @@ class Task(models.Model):
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name="task_owner_set"
+        related_name="owned_tasks"
     )
     status = models.CharField(
         max_length=20, choices=Status.choices, default=Status.TODO
     )
     assignee = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, blank=True,
-        related_name="task_assignee_set"
+        related_name="assigned_tasks"
     )
-    priority = models.TextField(
+    priority = models.CharField(
         max_length=20,
         choices=Priority.choices,
         default=Priority.MEDIUM
