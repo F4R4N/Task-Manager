@@ -1,20 +1,19 @@
 from rest_framework_simplejwt.views import (
     TokenObtainPairView, TokenBlacklistView, TokenRefreshView
 )
+from .serializers import LoginSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 
 class LoginView(TokenObtainPairView):
     permission_classes = [AllowAny]
+    serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
+        refresh_token = response.data.pop("refresh")
 
-        refresh_token = response.data["refresh"]
-        access_token = response.data["access"]
-
-        response.data = {"access": access_token}
         response.set_cookie(
             key="refresh",
             value=refresh_token,
