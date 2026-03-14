@@ -18,7 +18,7 @@ class Task(models.Model):
         HIGH = "high", "High"
 
     title = models.CharField(
-        max_length=50
+        max_length=100
     )
     description = models.TextField()
     owner = models.ForeignKey(
