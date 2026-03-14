@@ -1,0 +1,113 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(180deg, rgb(30, 36, 46) 0%, #0f172a 100%);
+
+}
+
+main{
+    padding: 70px 0 0 0 !important;
+
+}
+
+.no-pico {
+  all: unset;
+  cursor: pointer;
+}
+
+.main-content {
+    flex: 1;
+    margin: 0 0 0 240px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+.columns {
+    display: flex;
+    height: calc(100vh - 140px);
+    gap: 1rem;
+    margin: 0.5rem 2rem 0 0;
+}
+
+.column {
+    background-color: rgb(30, 36, 46);
+    border: 1px solid rgba(128, 128, 128, 0.387);
+    border-radius: 10px;
+    width: 360px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    flex: 1;
+    height: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* soft shadow */
+}
+
+@media (max-width: 768px) {
+    .columns {
+        flex-direction: column;
+        margin: 20px;
+    }
+    .column{
+        width: 100%;
+
+    }
+    .new-task-btn{
+        margin-left: 20px;
+    }
+}
+
+.new-task-btn{
+    width: fit-content;
+    height: fit-content;
+    font-size: small;
+    padding: 7px 20px;
+    background-color: rgb(30, 36, 46);
+    border: 1px solid rgba(128, 128, 128, 0.387);
+    border-radius: 8%;
+    color: #aaa;
+    font-weight: 700;
+    
+}
+
+.new-task-btn:hover{
+    background-color: rgb(44, 50, 60);
+
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.387);
+  /* padding: 8px 4px; */
+}
+
+.title .add {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 22px;
+  padding: 5px 10px;
+}
+
+@media (max-width: 768px) {
+
+  .columns {
+    flex-direction: column;   /* stack columns vertically */
+    height: 2400px;             /* allow page to scroll */
+  }
+
+  .column {
+    height: 300px;            /* fixed column height on mobile */
+  }
+
+}
