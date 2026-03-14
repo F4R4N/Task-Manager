@@ -17,13 +17,20 @@ export async function loadNavbar() {
         const response = await fetch('components/navbar/navbar.html');
         const html = await response.text();
         document.body.insertAdjacentHTML('afterbegin', html);
+        const hamburger = document.getElementById("hamburger-btn");
+        const sideMenu = document.getElementById("side-menu");
+
+        hamburger.addEventListener("click", () => {
+            if (sideMenu) sideMenu.classList.toggle("open");
+        });
+
     } catch (err) {
         console.error("Failed to load navbar:", err);
     }
 }
 
 export async function renderUserNavbar() {
-    
+
     const container = document.getElementById("navbar-user");
 
     try {
