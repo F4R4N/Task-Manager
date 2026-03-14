@@ -9,6 +9,7 @@ class Task(models.Model):
     class Status(models.TextChoices):
         TODO = "todo", "Todo"
         IN_PROGRESS = "in_progress", "In Progress"
+        REVIEW = "review", "Review"
         DONE = "done", "Done"
 
     class Priority(models.TextChoices):
