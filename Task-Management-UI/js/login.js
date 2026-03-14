@@ -18,3 +18,4 @@ loginForm.addEventListener("submit", async (e) => {
         errorMsg.textContent = err.message || "An error occurred. Please try again.";
     }
 });
+
