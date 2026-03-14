@@ -53,3 +53,7 @@
 .user-info.active .user-dropdown {
   display: flex;
 }
+
+#logout-btn{
+  font-size: 15px;
+}
