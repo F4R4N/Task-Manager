@@ -111,7 +111,7 @@ main {
     }
 
     .column {
-        height: 300px;
+        height: 750px;
     }
 
 }
@@ -152,10 +152,14 @@ main {
 .card {
     border: 1px solid rgba(128, 128, 128, 0.387);
     border-radius: 10px;
-    margin: 6px 8px;
+    margin: 10px 8px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
+}
+
+.card:hover {
+    background-color: rgba(37, 43, 52, 0.43)
 }
 
 .card-title {
