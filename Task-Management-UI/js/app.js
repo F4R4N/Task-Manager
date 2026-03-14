@@ -1,12 +1,12 @@
-import { fetchTasks } from './api.js';
-import { renderTasks } from './ui.js';
 import { loadNavbar, renderUserNavbar } from '../components/navbar/navbar.js';
+import { loadSideMenu } from "../components/sideMenu/sideMenu.js";
 
 async function init() {
+    const appContainer = document.getElementById("app");
+    await loadSideMenu(appContainer);
     await loadNavbar();
     await renderUserNavbar();
-    const tasks = await fetchTasks();
-    renderTasks(tasks);
+
 }
 
 init();
