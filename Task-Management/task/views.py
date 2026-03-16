@@ -25,7 +25,7 @@ class TaskViewSet(ModelViewSet):
         serializer.save(owner=self.request.user)
 
 
-class UserView(ListAPIView):
+class UsersView(ListAPIView):
     permission_classes = [IsAuthenticated, ]
     queryset = User.objects.all()
     serializer_class = UserSerializer

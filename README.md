@@ -44,3 +44,6 @@ I inherited the TokenObtainPairView and edited it to not return the refresh toke
 
 ### Task
 
+#### UsersView
+
+I added a new view called UsersView in my Task app to populate the assignee dropdown field when user is trying to create or update the assignee of a field. I understand that this will expose a list of all users in the DB to the end-user. This should be changed later to only show a list of users that are included in the project which the tasks are being created at. I did not specify project for tasks as I am under impression that it was not in the specification, and I tried to stay as loyal as possible to the original specification.
