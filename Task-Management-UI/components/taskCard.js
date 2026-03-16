@@ -1,5 +1,5 @@
 import { fetchTasks } from "../js/api.js";
-import { formatDate } from "./helper.js"
+import { formatDate } from "../js/helper.js"
 
 export async function addTaskCard(task) {
     const template = document.getElementById("task-template");
