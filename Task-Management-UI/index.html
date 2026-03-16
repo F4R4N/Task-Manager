@@ -13,7 +13,7 @@
     <main id="app">
         <div id="main-content" class="main-content">
             <div class="actions">
-                <button class="no-pico btn new-task-btn">
+                <button class="no-pico btn new-task-btn add" data-status="todo">
                     New Task
                 </button>
                 <button class="no-pico btn search-btn">
@@ -24,7 +24,7 @@
                 <div class="column" id="todo">
                     <div class="title">
                         <span class="col-title">To Do</span>
-                        <span class="add">+</span>
+                        <span class="plus add" data-status="todo">+</span>
                     </div>
                     <div class="cards">
 
@@ -34,7 +34,7 @@
                 <div class="column" id="inProgress">
                     <div class="title">
                         <span class="col-title">In Progress</span>
-                        <span class="add">+</span>
+                        <span class="plus add" data-status="in_progress">+</span>
                     </div>
                     <div class="cards">
 
@@ -43,7 +43,7 @@
                 <div class="column" id="review">
                     <div class="title">
                         <span class="col-title">Review</span>
-                        <span class="add">+</span>
+                        <span class="plus add" data-status="review">+</span>
                     </div>
                     <div class="cards">
 
@@ -52,7 +52,7 @@
                 <div class="column" id="done">
                     <div class="title">
                         <span class="col-title">Done</span>
-                        <span class="add">+</span>
+                        <span class="plus add" data-status="done">+</span>
                     </div>
                     <div class="cards">
 
@@ -60,7 +60,54 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div id="modalOverlay">
+            <div class="modal">
+                <span class="close-btn" id="closeBtn">&times;</span>
+                <div class="modal-header">
+                    <h2 id="modalHeader"></h2>
+                </div>
+
+                <div class="modal-section">
+                    <label>Title:</label>
+                    <input type="text" id="title" />
+                </div>
+
+
+                <div class="modal-section">
+                    <label>Description:</label>
+                    <textarea id="description" rows="3"></textarea>
+                </div>
+
+                <div class="modal-section">
+                    <label>Assignee:</label>
+                    <select name="assignee" id="assigneeSelect">
+                    </select>
+                </div>
+
+                <div class="modal-section">
+                    <label>Status:</label>
+                    <select name="status" id="statusSelect">
+                        <option value="todo">Todo</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="review">Review</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+
+                <div class="modal-section">
+                    <label>Priority:</label>
+                    <select name="priority" id="prioritySelect">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            <button class="no-pico btn submit-btn" id="modalActionBtn"></button>
+            </div>
+        </div>
     </main>
+    <!-- Task Card -->
     <template id="task-template">
         <div class="card">
             <span class="card-title"></span>

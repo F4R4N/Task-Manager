@@ -1,5 +1,6 @@
 import { fetchTasks } from "../js/api.js";
 import { formatDate } from "../js/helper.js"
+import { renderModal } from "../js/taskModal.js";
 
 export async function addTaskCard(task) {
     const template = document.getElementById("task-template");
@@ -20,7 +21,7 @@ export async function addTaskCard(task) {
         const assigneeProfilePic = clone.querySelector(".assignee-profile-pic")
         assigneeProfilePic.src = task.assignee.gravatar;
         assigneeProfilePic.alt = task.assignee.username + " profile picture"
-    }else{
+    } else {
         clone.querySelector(".assignee").remove()
     }
 
@@ -33,3 +34,17 @@ export async function renderTasks() {
     tasks.forEach(task => addTaskCard(task));
 }
 
+export async function displayAddTask(res) {
+    const addTaskBtns = document.querySelectorAll(".add");
+    if (!res.ok) {
+        addTaskBtns.forEach(btn => {
+            btn.style.display = "none";
+        });
+    } else {
+        addTaskBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                renderModal("create", null, btn.dataset.status);
+            })
+        });
+    }
+}

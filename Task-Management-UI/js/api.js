@@ -61,7 +61,7 @@ export async function fetchWithAuth(url, options = {}) {
 
         } catch (err) {
             localStorage.removeItem("access_token");
-            throw new Error("Authentication expired");
+            
         }
     }
 

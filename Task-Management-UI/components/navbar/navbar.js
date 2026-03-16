@@ -1,4 +1,3 @@
-import { fetchWithAuth } from "../../js/api.js";
 import { renderUserMenu } from "../userMenu/userMenu.js";
 
 function loadCSS() {
@@ -11,7 +10,20 @@ function loadCSS() {
     }
 }
 
-export async function loadNavbar() {
+export async function renderUserNavbar(res) {
+    const container = document.getElementById("navbar-user");
+
+    if (res.ok) {
+        const user = await res.json();
+        renderUserMenu(container, user);
+    } else {
+        container.innerHTML = `
+            <a class="login-btn" href="login.html">Login</a>
+        `;
+    }
+}
+
+export async function loadNavbar(res) {
     loadCSS();
     try {
         const response = await fetch('components/navbar/navbar.html');
@@ -19,7 +31,7 @@ export async function loadNavbar() {
         document.body.insertAdjacentHTML('afterbegin', html);
         const hamburger = document.getElementById("hamburger-btn");
         const sideMenu = document.getElementById("side-menu");
-
+        renderUserNavbar(res);
         hamburger.addEventListener("click", () => {
             if (sideMenu) sideMenu.classList.toggle("open");
         });
@@ -29,25 +41,3 @@ export async function loadNavbar() {
     }
 }
 
-export async function renderUserNavbar() {
-
-    const container = document.getElementById("navbar-user");
-
-    try {
-        const res = await fetchWithAuth("/auth/account");
-
-        if (!res.ok) {
-            throw new Error("Not authenticated");
-        }
-
-        const user = await res.json();
-
-        renderUserMenu(container, user);
-
-    } catch (err) {
-
-        container.innerHTML = `
-            <a class="login-btn" href="login.html">Login</a>
-        `;
-    }
-}
