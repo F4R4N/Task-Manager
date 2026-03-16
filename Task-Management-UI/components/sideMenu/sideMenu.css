@@ -1,4 +1,3 @@
-/* Container */
 .side-menu {
     position: fixed;
     top: 61px;
@@ -11,7 +10,7 @@
     flex-direction: column;
     transition: transform 0.3s ease;
     z-index: 100;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* soft shadow */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 /* Hamburger button */
@@ -53,15 +52,14 @@
     padding: 5px 15px;
 }
 
-/* Responsive behavior */
 @media (max-width: 768px) {
     .side-menu {
-        transform: translateX(-100%);  /* hide off-screen */
+        transform: translateX(-100%);
         transition: transform 0.3s ease;
         top: 59px;
     }
 
     .side-menu.open {
-        transform: translateX(0);       /* slide in when open */
+        transform: translateX(0);
     }
 }

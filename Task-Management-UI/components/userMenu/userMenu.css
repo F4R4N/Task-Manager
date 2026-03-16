@@ -27,33 +27,14 @@
 .user-dropdown {
   position: absolute;
   top: 40px;
-  right: -15px;
+  right: 0px;
   display: none;
   flex-direction: column;
-  border: 1px solid rgba(128, 128, 128, 0.387);
   border-radius: 6px;
-  min-width: 140px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   background: rgb(30, 36, 46);
 }
 
-.user-dropdown a {
-  padding: 8px 12px;
-  text-decoration: none;
-  color: #f3f3f3;
-  font-size: 0.9rem;
-}
-
-.user-dropdown a:hover {
-  background: rgb(35, 42, 52);
-
-}
-
-
 .user-info.active .user-dropdown {
   display: flex;
-}
-
-#logout-btn{
-  font-size: 15px;
 }

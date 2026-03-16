@@ -50,7 +50,6 @@ main {
     flex: 1;
     height: 100%;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-    /* soft shadow */
 }
 
 @media (max-width: 768px) {
@@ -69,20 +68,31 @@ main {
     }
 }
 
-.new-task-btn {
+.btn {
     width: fit-content;
     height: fit-content;
-    font-size: small;
+    font-size: 0.7rem;
     padding: 7px 20px;
     background-color: rgb(30, 36, 46);
     border: 1px solid rgba(128, 128, 128, 0.387);
     border-radius: 8%;
     color: #aaa;
     font-weight: 700;
-
 }
 
-.new-task-btn:hover {
+.actions {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.search-btn {
+    align-self: flex-end;
+    margin-right: 2rem;
+}
+
+.btn:hover {
     background-color: rgb(44, 50, 60);
 
 }
@@ -166,7 +176,6 @@ main {
     margin: 15px 12px 0;
     font-size: 18px;
     font-weight: 600;
-    display: block;
     line-height: 1.4;
 
     display: -webkit-box;
@@ -191,7 +200,6 @@ main {
 .card-bottom {
     display: flex;
     justify-content: space-between;
-    /* left = badge, right = assignee */
     margin-top: auto;
 }
 
