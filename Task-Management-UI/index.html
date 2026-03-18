@@ -71,24 +71,24 @@
                         </div>
 
                         <div class="modal-section">
-                            <label>Title:</label>
+                            <label for="title">Title:</label>
                             <input type="text" id="title" maxlength="100" minlength="5" required />
                         </div>
 
                         <div class="modal-section">
-                            <label>Description:</label>
+                            <label for="description">Description:</label>
                             <textarea id="description" rows="3"></textarea>
                         </div>
 
                         <div class="modal-section">
-                            <label>Assignee:</label>
+                            <label for="assigneeSelect">Assignee:</label>
                             <select name="assignee" id="assigneeSelect">
                                 <option value="">-</option>
                             </select>
                         </div>
 
                         <div class="modal-section">
-                            <label>Status:</label>
+                            <label for="statusSelect">Status:</label>
                             <select name="status" id="statusSelect">
                                 <option value="todo">Todo</option>
                                 <option value="in_progress">In Progress</option>
@@ -98,7 +98,7 @@
                         </div>
 
                         <div class="modal-section">
-                            <label>Priority:</label>
+                            <label for="prioritySelect">Priority:</label>
                             <select name="priority" id="prioritySelect">
                                 <option value="low">Low</option>
                                 <option value="medium" selected>Medium</option>
@@ -128,7 +128,7 @@
         </div>
     </main>
 
-    <!-- Task Card -->
+    <!-- Task Card template -->
     <template id="task-template">
         <div class="card">
             <span class="card-title"></span>
