@@ -16,7 +16,7 @@
                 <button class="no-pico btn new-task-btn add" data-status="todo">
                     New Task
                 </button>
-                <button class="no-pico btn search-btn">
+                <button class="no-pico btn search-btn" id="searchBtn">
                     Search
                 </button>
             </div>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="column" id="inProgress">
+                <div class="column" id="in_progress">
                     <div class="title">
                         <span class="col-title">In Progress</span>
                         <span class="plus add" data-status="in_progress">+</span>
@@ -64,49 +64,70 @@
         <div id="modalOverlay">
             <div class="modal">
                 <span class="close-btn" id="closeBtn">&times;</span>
-                <div class="modal-header">
-                    <h2 id="modalHeader"></h2>
-                </div>
+                <div class="task-modal">
+                    <form method="post" id="taskForm">
+                        <div class="modal-header">
+                            <h2 id="modalHeader"></h2>
+                        </div>
 
-                <div class="modal-section">
-                    <label>Title:</label>
-                    <input type="text" id="title" />
-                </div>
+                        <div class="modal-section">
+                            <label>Title:</label>
+                            <input type="text" id="title" maxlength="100" minlength="5" required />
+                        </div>
 
+                        <div class="modal-section">
+                            <label>Description:</label>
+                            <textarea id="description" rows="3"></textarea>
+                        </div>
 
-                <div class="modal-section">
-                    <label>Description:</label>
-                    <textarea id="description" rows="3"></textarea>
-                </div>
+                        <div class="modal-section">
+                            <label>Assignee:</label>
+                            <select name="assignee" id="assigneeSelect">
+                                <option value="">-</option>
+                            </select>
+                        </div>
 
-                <div class="modal-section">
-                    <label>Assignee:</label>
-                    <select name="assignee" id="assigneeSelect">
-                    </select>
-                </div>
+                        <div class="modal-section">
+                            <label>Status:</label>
+                            <select name="status" id="statusSelect">
+                                <option value="todo">Todo</option>
+                                <option value="in_progress">In Progress</option>
+                                <option value="review">Review</option>
+                                <option value="done">Done</option>
+                            </select>
+                        </div>
 
-                <div class="modal-section">
-                    <label>Status:</label>
-                    <select name="status" id="statusSelect">
-                        <option value="todo">Todo</option>
-                        <option value="in_progress">In Progress</option>
-                        <option value="review">Review</option>
-                        <option value="done">Done</option>
-                    </select>
-                </div>
+                        <div class="modal-section">
+                            <label>Priority:</label>
+                            <select name="priority" id="prioritySelect">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <button class="no-pico btn submit-btn" id="modalActionBtn"></button>
 
-                <div class="modal-section">
-                    <label>Priority:</label>
-                    <select name="priority" id="prioritySelect">
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
+                    </form>
                 </div>
-            <button class="no-pico btn submit-btn" id="modalActionBtn"></button>
+                <div class="search-modal">
+                    <input type="search" name="search" id="searchInput">
+                    <div class="search-results">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- side modal (task detail modal) -->
+        <div id="taskModal" class="side-modal">
+            <div class="modal-content-right">
+                <span class="close-btn">&times;</span>
+                <div id="modalTaskContent">
+                    <p>Loading task details...</p>
+                </div>
             </div>
         </div>
     </main>
+
     <!-- Task Card -->
     <template id="task-template">
         <div class="card">
