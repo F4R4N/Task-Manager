@@ -1,13 +1,14 @@
 import { fetchTasks } from "../js/api.js";
 import { formatDate } from "../js/helper.js"
 import { renderModal } from "../js/taskModal.js";
+import { showDetailModal } from "../js/taskDetailModal.js";
 
 export async function addTaskCard(task) {
     const template = document.getElementById("task-template");
     if (!template) return;
 
     const clone = template.content.cloneNode(true);
-
+    const card = clone.querySelector(".card");
     const title = clone.querySelector(".card-title")
     title.textContent = task.title;
     title.title = task.title;
@@ -24,6 +25,11 @@ export async function addTaskCard(task) {
     } else {
         clone.querySelector(".assignee").remove()
     }
+    card.dataset.id = task.id;
+
+    card.addEventListener("click", (e) => {
+        showDetailModal(e.currentTarget.dataset.id);
+    })
 
     const container = document.getElementById(task.status);
     container.querySelector(".cards").appendChild(clone);
@@ -48,3 +54,4 @@ export async function displayAddTask(res) {
         });
     }
 }
+
