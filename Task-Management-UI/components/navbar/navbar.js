@@ -18,7 +18,7 @@ export async function renderUserNavbar(res) {
         renderUserMenu(container, user);
     } else {
         container.innerHTML = `
-            <a class="login-btn" href="login.html">Login</a>
+            <a class="btn login-btn" href="login.html">Login</a>
         `;
     }
 }
