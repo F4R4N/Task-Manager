@@ -2,6 +2,7 @@ import { loadNavbar } from '../components/navbar/navbar.js';
 import { loadSideMenu } from "../components/sideMenu/sideMenu.js";
 import { renderTasks, displayAddTask } from "../components/Tasks.js"
 import { fetchWithAuth } from './api.js';
+import { renderSearchModal } from './searchModal.js';
 
 async function init() {
     const res = await fetchWithAuth("/auth/account");
@@ -10,6 +11,7 @@ async function init() {
     await loadNavbar(res);
     await displayAddTask(res);
     await renderTasks();
+    await renderSearchModal();
 }
 
 init();
