@@ -5,6 +5,11 @@ export async function fetchTasks() {
     return response.json();
 }
 
+export async function fetchTask(id) {
+    const response = await fetch(`${API_BASE}/task/${id}`);
+    return response.json();
+}
+
 export async function createTask(task) {
     const response = await fetch(`${API_BASE}/task/`, {
         method: "POST",
@@ -110,4 +115,11 @@ export async function login(username, password) {
     } catch (err) {
         throw err;
     }
+}
+
+export async function searchTask(input){
+    const response = await fetch(`${API_BASE}/task/?search=${input}`);
+    const res = await response.json()
+    return res;
+
 }
