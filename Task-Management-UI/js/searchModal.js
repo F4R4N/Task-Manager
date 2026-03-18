@@ -1,8 +1,18 @@
 import { searchTask } from "./api.js";
 import { addCloseModalEventListeners } from "./taskModal.js";
-async function renderSearchResults(results) {
-    const searchModal = document.querySelector(".search-results");
+import { fillTaskData } from "../components/Tasks.js";
 
+async function addSearchResult(task) {
+    const card = fillTaskData(task);
+
+    const resultsContainer = document.querySelector(".search-results");
+    resultsContainer.appendChild(card);
+}
+
+async function renderSearchResults(results) {
+    results.forEach(task => {
+        addSearchResult(task);
+    });
 }
 
 async function openSearchModal() {
@@ -12,13 +22,14 @@ async function openSearchModal() {
     modal.querySelector(".search-modal").style.display = "flex";
     document.getElementById("modalActionBtn").style.display = "none";
     const searchInput = document.getElementById("searchInput");
-    
+
     searchInput.addEventListener("keyup", async (e) => {
-        if (e.key === "Enter"){
+        if (e.key === "Enter") {
             e.preventDefault();
+            clearSearchResults();
             const results = await searchTask(searchInput.value);
             await renderSearchResults(results);
-            
+
         }
     })
     addCloseModalEventListeners();
@@ -27,6 +38,13 @@ async function openSearchModal() {
 export async function renderSearchModal() {
     const searchBtn = document.getElementById("searchBtn")
     searchBtn.addEventListener("click", () => {
+        clearSearchResults();
         openSearchModal();
     })
+}
+
+function clearSearchResults() {
+    const resultsContainer = document.querySelector(".search-results");
+    resultsContainer.innerHTML = ``;
+
 }

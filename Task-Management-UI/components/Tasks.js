@@ -3,7 +3,7 @@ import { formatDate } from "../js/helper.js"
 import { renderModal } from "../js/taskModal.js";
 import { showDetailModal } from "../js/taskDetailModal.js";
 
-export async function addTaskCard(task) {
+export function fillTaskData(task){
     const template = document.getElementById("task-template");
     if (!template) return;
 
@@ -30,9 +30,14 @@ export async function addTaskCard(task) {
     card.addEventListener("click", (e) => {
         showDetailModal(e.currentTarget.dataset.id);
     })
+    return clone;
+}
+
+export async function addTaskCard(task) {
+    const card = fillTaskData(task);
 
     const container = document.getElementById(task.status);
-    container.querySelector(".cards").appendChild(clone);
+    container.querySelector(".cards").appendChild(card);
 }
 
 export async function renderTasks() {
