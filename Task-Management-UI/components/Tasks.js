@@ -1,9 +1,9 @@
 import { fetchTasks } from "../js/api.js";
 import { formatDate } from "../js/helper.js"
-import { renderModal } from "../js/taskModal.js";
+import { renderModal, readModalFields } from "../js/taskModal.js";
 import { showDetailModal } from "../js/taskDetailModal.js";
 
-export function fillTaskData(task){
+export function fillTaskData(task) {
     const template = document.getElementById("task-template");
     if (!template) return;
 
@@ -46,6 +46,12 @@ export async function renderTasks() {
 }
 
 export async function displayAddTask(res) {
+    const modal = document.getElementById("modalOverlay");
+    const taskForm = modal.querySelector("#taskForm");
+    taskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        readModalFields(modal);
+    });
     const addTaskBtns = document.querySelectorAll(".add");
     if (!res.ok) {
         addTaskBtns.forEach(btn => {

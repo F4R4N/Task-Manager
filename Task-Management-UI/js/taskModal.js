@@ -1,6 +1,6 @@
 import { fetchWithAuth } from "./api.js";
 
-async function readModalFields(modal) {
+export async function readModalFields(modal) {
     const actionBtn = modal.querySelector("#modalActionBtn");
     const data = {
         "title": modal.querySelector("#title").value,
@@ -22,7 +22,7 @@ async function readModalFields(modal) {
 
 export async function renderModal(action, task, status) {
     const modal = document.getElementById("modalOverlay");
-
+    
     const usersRes = await fetchWithAuth("/users");
     const users = await usersRes.json();
     const assigneesSelect = modal.querySelector("#assigneeSelect")
@@ -46,16 +46,11 @@ export async function renderModal(action, task, status) {
     } else {
 
     }
-    const taskForm = modal.querySelector("#taskForm");
-    taskForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        readModalFields(modal);
-    });
+
     modal.style.display = 'flex';
     modal.querySelector(".task-modal").style.display = "block";
     modal.querySelector(".search-modal").style.display = "none";
     document.getElementById("modalActionBtn").style.display = "block";
-    addCloseModalEventListeners();
 
 }
 
