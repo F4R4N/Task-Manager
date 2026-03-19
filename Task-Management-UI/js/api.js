@@ -134,3 +134,12 @@ export async function deleteTask(id) {
     const res = await fetchWithAuth(`/task/${id}/`, options);
     return res;
 }
+
+export async function editTask(id, data) {
+    const options = {
+        method: "PUT",
+        body: JSON.stringify(data)
+    }
+    const res = await fetchWithAuth(`/task/${id}/`, options);
+    return res;
+}

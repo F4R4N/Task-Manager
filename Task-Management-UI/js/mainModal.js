@@ -1,7 +1,7 @@
-import { fetchWithAuth, createTask } from "./api.js";
+import { fetchWithAuth, createTask, editTask } from "./api.js";
 import { capitalize } from "./helper.js";
 
-export async function readModalFields(modal) {
+export async function readModalFields(modal, id) {
     const actionBtn = modal.querySelector("#modalActionBtn");
     const data = {
         "title": modal.querySelector("#title").value,
@@ -12,6 +12,8 @@ export async function readModalFields(modal) {
     }
     if (actionBtn.dataset.action === "create") {
         createTask(data);
+    } else if (actionBtn.dataset.action === "edit") {
+        editTask(id, data)
     }
 }
 
@@ -37,13 +39,28 @@ export async function renderModal(action, taskId, status) {
     } else {
         fillAssigneeSelect(modal);
         if (action === "create") {
-            modal.querySelector("#modalHeader").textContent = "Create Task"
-            modal.querySelector('#statusSelect').value = status;
+            renderCreateModal(modal, status);
+        } else if (action === "edit") {
+            modal.querySelector("#modalHeader").textContent = "Edit Task";
             modal.querySelector(".task-modal").classList.remove("hide");
-        } else{
-            
+            const res = await fetchWithAuth(`/task/${taskId}`, { method: "GET" });
+            const data = await res.json();
+            fillEditForm(modal, data);
         }
     }
+}
+
+function fillEditForm(modal, data) {
+    modal.querySelector("#title").value = data.title;
+    modal.querySelector("#description").value = data.description;
+    if (data.assignee !== null) {
+        const assigneeSelect = modal.querySelector("#assigneeSelect");
+        assigneeSelect.querySelector(`option[value="${data.assignee.id}"]`).selected = true;
+    }
+    const statusSelect = modal.querySelector("#statusSelect");
+    statusSelect.querySelector(`option[value="${data.status}"]`).selected = true;
+    const prioritySelect = modal.querySelector("#prioritySelect");
+    prioritySelect.querySelector(`option[value="${data.priority}"]`).selected = true;
 }
 
 async function fillAssigneeSelect(modal) {
@@ -56,7 +73,7 @@ async function fillAssigneeSelect(modal) {
     users.forEach(user => {
         const option = document.createElement("option");
         option.value = user.id || "";
-        option.textContent = `${user.username || "--"} ${user.username ? `(${user.email})` : ""}`;
+        option.textContent = `${user.username || "--"}${user.username ? ` (${user.email})` : ""}`;
         assigneesSelect.appendChild(option)
     });
 }
@@ -74,3 +91,23 @@ function renderDeleteModal(modal, taskId) {
     confirmDeleteBtn.classList.remove("hide");
 }
 
+function renderCreateModal(modal, status) {
+    clearModalInputs(modal);
+    modal.querySelector("#modalHeader").textContent = "Create Task"
+    modal.querySelector('#statusSelect').value = status;
+    modal.querySelector(".task-modal").classList.remove("hide");
+}
+
+function clearModalInputs(modal) {
+    modal.querySelector("#title").value = "";
+    modal.querySelector("#description").value = "";
+
+    const assigneeSelect = modal.querySelector("#assigneeSelect");
+    assigneeSelect.querySelector('option:first-child').selected = true;
+    
+    const statusSelect = modal.querySelector("#statusSelect");
+    statusSelect.querySelector('option[value="todo"]').selected = true;
+
+    const prioritySelect = modal.querySelector("#prioritySelect");
+    prioritySelect.querySelector('option[value="medium"]').selected = true;
+}

@@ -23,6 +23,9 @@ function attachEventListeners() {
         if (e.target.matches("#deleteBtn")) {
             renderModal("delete", e.target.dataset.id)
         }
+        if (e.target.matches("#editBtn")) {
+            renderModal("edit", e.target.dataset.id)
+        }
         if (e.target.matches('.confirm-delete')) {
             deleteTask(e.target.dataset.id);
         }
@@ -36,7 +39,8 @@ function attachEventListeners() {
     document.addEventListener("submit", (e) => {
         if (e.target.matches("#taskForm")) {
             e.preventDefault();
-            readModalFields(mainModal);
+            const id = document.getElementById("editBtn").dataset.id;
+            readModalFields(mainModal, id);
         }
     });
 }
