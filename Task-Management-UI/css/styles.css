@@ -208,6 +208,7 @@ main {
     height: 24px;
     border-radius: 50%;
     object-fit: cover;
+    font-size: 0.7rem;
 }
 
 .assignee-username {
@@ -341,6 +342,9 @@ textarea {
 }
 
 .modal-content-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #131111;
     margin: 0;
     padding: 20px;
@@ -355,6 +359,25 @@ textarea {
     transform: translateX(100%);
     animation: slide-in-right 0.4s forwards;
     overflow-y: auto;
+}
+
+.action-container{
+    align-self: flex-end;
+    display: flex;
+    gap: 25px;
+    margin: 20px;
+
+}
+
+.delete-btn{
+    background-color: rgb(112, 16, 16);
+    color: #ffffffc5;
+}
+
+.delete-btn:hover{
+    color: #fffffffd;
+    background-color: rgb(149, 21, 21);
+
 }
 
 .close-button {
