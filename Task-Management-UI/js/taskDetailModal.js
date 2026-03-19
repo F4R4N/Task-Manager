@@ -1,5 +1,5 @@
 import { fetchTask } from "./api.js";
-import { formatDate } from "./helper.js";
+import { formatDateTime } from "./helper.js";
 
 function closeTaskDetailModal(modal) {
     modal.classList.remove('is-visible');
@@ -32,11 +32,11 @@ function openTaskModal(modal, taskData) {
                 </div>
                 <div class="task-detail-item">
                     <strong>Status:</strong>
-                    <span>${taskData.status[0].toUpperCase() + taskData.status.slice(1)}</span>
+                    <span>${(taskData.status[0].toUpperCase() + taskData.status.slice(1)).replace("_", " ")}</span>
                 </div>
                 <div class="task-detail-item">
                     <strong>Created:</strong>
-                    <span>${formatDate(taskData.created_at)} (Last Updated at: ${formatDate(taskData.updated_at)})</span>
+                    <span>${formatDateTime(taskData.created_at)} (Last Updated at: ${formatDateTime(taskData.updated_at)})</span>
                 </div>
             `;
     } else {
