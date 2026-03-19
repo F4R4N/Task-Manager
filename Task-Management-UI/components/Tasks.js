@@ -21,7 +21,7 @@ export function fillTaskData(task) {
         clone.querySelector(".assignee-username").textContent = task.assignee.username;
         const assigneeProfilePic = clone.querySelector(".assignee-profile-pic")
         assigneeProfilePic.src = task.assignee.gravatar;
-        assigneeProfilePic.alt = task.assignee.username + " profile picture"
+        assigneeProfilePic.alt = task.assignee.username + " profile"
     } else {
         clone.querySelector(".assignee").remove()
     }
@@ -65,4 +65,3 @@ export async function displayAddTask(res) {
         });
     }
 }
-
