@@ -1,7 +1,8 @@
 import { fetchTasks } from "../js/api.js";
-import { formatDate } from "../js/helper.js"
-import { renderModal, readModalFields } from "../js/taskModal.js";
-import { showDetailModal } from "../js/taskDetailModal.js";
+import { capitalize, formatDate } from "../js/helper.js"
+import { renderModal } from "../js/mainModal.js";
+import { showDetailModal } from "../js/sideModal.js";
+
 
 export function fillTaskData(task) {
     const template = document.getElementById("task-template");
@@ -15,7 +16,7 @@ export function fillTaskData(task) {
     clone.querySelector(".created-at").textContent = formatDate(task.created_at);
 
     const badge = clone.querySelector(".badge")
-    badge.textContent = task.priority;
+    badge.textContent = capitalize(task.priority);
     badge.classList.add("badge-" + task.priority);
     if (task.assignee != null) {
         clone.querySelector(".assignee-username").textContent = task.assignee.username;
@@ -45,13 +46,7 @@ export async function renderTasks() {
     tasks.forEach(task => addTaskCard(task));
 }
 
-export async function displayAddTask(res) {
-    const modal = document.getElementById("modalOverlay");
-    const taskForm = modal.querySelector("#taskForm");
-    taskForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        readModalFields(modal);
-    });
+export async function displayAddTask(res) {    
     const addTaskBtns = document.querySelectorAll(".add");
     if (!res.ok) {
         addTaskBtns.forEach(btn => {
