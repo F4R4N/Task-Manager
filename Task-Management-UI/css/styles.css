@@ -248,7 +248,7 @@ main {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
-    z-index: 999;
+    z-index: 1000;
     justify-content: center;
     align-items: center;
 }
@@ -316,21 +316,21 @@ textarea {
 }
 /* search modal */
 .search-modal {
-    display: none;
+    display: flex;
     margin: 30px 0;
     flex-direction: column;
     
 }
 .search-results{
     max-height: 600px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 /* side modal (task detail modal) */
 
 .side-modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 999;
     left: 0;
     top: 0;
     width: 100%;
@@ -455,8 +455,23 @@ textarea {
     display: flex;
     flex-direction: column;
 }
+.modal-content{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
 
 .confirm-delete{
-    display: none;
     align-self: flex-end;
+}
+
+
+
+.hide{
+    display: none;
+}
+
+.no-results{
+    justify-self: center;
+    margin-top: 3rem;
 }
