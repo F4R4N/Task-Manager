@@ -21,6 +21,7 @@ async function openSearchModal() {
     modal.querySelector(".task-modal").style.display = "none";
     modal.querySelector(".search-modal").style.display = "flex";
     document.getElementById("modalActionBtn").style.display = "none";
+    modal.querySelector("#searchInput").focus()
 }
 
 export async function renderSearchModal() {
