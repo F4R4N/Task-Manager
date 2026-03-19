@@ -1,36 +1,28 @@
 import { renderUserMenu } from "../userMenu/userMenu.js";
+import { loadComponentCSS } from "../../js/helper.js";
 
-function loadCSS() {
-    if (!document.getElementById("navbar")) {
-        const link = document.createElement("link");
-        link.id = "navbar";
-        link.rel = "stylesheet";
-        link.href = "components/navbar/navbar.css";
-        document.head.appendChild(link);
-    }
-}
 
 export async function renderUserNavbar(res) {
-    const container = document.getElementById("navbar-user");
+    const container = document.getElementById("navbarUser");
 
     if (res.ok) {
         const user = await res.json();
         renderUserMenu(container, user);
     } else {
         container.innerHTML = `
-            <a class="btn login-btn" href="login.html">Login</a>
+            <a class="btn login-btn" href="components/login/login.html">Login</a>
         `;
     }
 }
 
 export async function loadNavbar(res) {
-    loadCSS();
+    loadComponentCSS("navbar", "components/navbar/navbar.css");
     try {
         const response = await fetch('components/navbar/navbar.html');
         const html = await response.text();
         document.body.insertAdjacentHTML('afterbegin', html);
-        const hamburger = document.getElementById("hamburger-btn");
-        const sideMenu = document.getElementById("side-menu");
+        const hamburger = document.getElementById("hamburgerBtn");
+        const sideMenu = document.getElementById("sideMenu");
         renderUserNavbar(res);
         hamburger.addEventListener("click", () => {
             if (sideMenu) sideMenu.classList.toggle("open");

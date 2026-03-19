@@ -1,23 +1,15 @@
 import { logout } from "../../js/api.js";
-function loadCSS() {
-    if (!document.getElementById("user-menu")) {
-        const link = document.createElement("link");
-        link.id = "user-menu";
-        link.rel = "stylesheet";
-        link.href = "components/userMenu/userMenu.css";
-        document.head.appendChild(link);
-    }
-}
+import { loadComponentCSS } from "../../js/helper.js";
 
 export async function renderUserMenu(container, user) {
-    loadCSS();
+    loadComponentCSS("userMenuStyle", "components/userMenu/userMenu.css")
     try {
         const res = await fetch("components/userMenu/userMenu.html");
         const html = await res.text();
 
         container.innerHTML = html;
 
-        const userMenu = container.querySelector("#user-menu");
+        const userMenu = container.querySelector("#userMenu");
         const avatar = userMenu.querySelector(".avatar");
         const username = userMenu.querySelector(".username");
 
@@ -36,11 +28,11 @@ export async function renderUserMenu(container, user) {
         });
 
         // Logout
-        const logoutBtn = userMenu.querySelector("#logout-btn");
+        const logoutBtn = userMenu.querySelector("#logoutBtn");
         logoutBtn.addEventListener("click", async (e) => {
             e.preventDefault();
             await logout();
-            window.location.href = "login.html";
+            // window.location.href = "login.html";
         });
 
     } catch (err) {

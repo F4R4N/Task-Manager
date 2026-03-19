@@ -15,3 +15,13 @@ export function formatDateTime(isoDateTime){
         minute: "2-digit"
     });
 }
+
+export function loadComponentCSS(id, src){
+    if (!document.getElementById(id)) {
+        const link = document.createElement("link");
+        link.id = id;
+        link.rel = "stylesheet";
+        link.href = src;
+        document.head.appendChild(link);
+    }
+}
