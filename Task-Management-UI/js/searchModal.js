@@ -1,45 +1,40 @@
 import { searchTask } from "./api.js";
-import { addCloseModalEventListeners } from "./taskModal.js";
+import { renderModal } from "./mainModal.js";
 import { fillTaskData } from "../components/Tasks.js";
 
 async function addSearchResult(task) {
     const card = fillTaskData(task);
-
     const resultsContainer = document.querySelector(".search-results");
     resultsContainer.appendChild(card);
 }
 
 async function renderSearchResults(results) {
+    if (results.length === 0) {
+    const resultsContainer = document.querySelector(".search-results");
+    const p = document.createElement("p");
+    p.textContent = "No results";
+    p.classList.add("no-results")
+        resultsContainer.appendChild(p);
+    }
     results.forEach(task => {
         addSearchResult(task);
     });
 }
 
-async function openSearchModal() {
-    const modal = document.getElementById("modalOverlay")
-    modal.style.display = "flex";
-    modal.querySelector(".task-modal").style.display = "none";
-    modal.querySelector(".search-modal").style.display = "flex";
-    document.getElementById("modalActionBtn").style.display = "none";
-    modal.querySelector("#searchInput").focus()
-}
-
 export async function renderSearchModal() {
-    addCloseModalEventListeners();
     const searchInput = document.getElementById("searchInput");
     searchInput.addEventListener("keyup", async (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
             clearSearchResults();
             const results = await searchTask(searchInput.value);
-            await renderSearchResults(results);
-
+            renderSearchResults(results);
         }
     })
     const searchBtn = document.getElementById("searchBtn")
     searchBtn.addEventListener("click", () => {
         clearSearchResults();
-        openSearchModal();
+        renderModal("search");
     })
 }
 
