@@ -64,10 +64,12 @@
         <div id="modalOverlay">
             <div class="modal">
                 <span class="close-btn" id="closeBtn">&times;</span>
+                <h2 id="modalHeader"></h2>
+                <button class="btn delete-btn confirm-delete">Delete</button>
+        
                 <div class="task-modal">
                     <form method="post" id="taskForm">
                         <div class="modal-header">
-                            <h2 id="modalHeader"></h2>
                         </div>
 
                         <div class="modal-section">
@@ -110,7 +112,7 @@
                     </form>
                 </div>
                 <div class="search-modal">
-                    <input type="search" name="search" id="searchInput">
+                    <input type="search" name="search" id="searchInput" autofocus>
                     <div class="search-results">
 
                     </div>
