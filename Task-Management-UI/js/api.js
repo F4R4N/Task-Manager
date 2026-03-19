@@ -85,10 +85,12 @@ export async function logout() {
         }
 
         localStorage.removeItem("access_token");
+        localStorage.removeItem("user");
 
     } catch (err) {
         console.error("Error during logout:", err);
         localStorage.removeItem("access_token");
+        localStorage.removeItem("user");
     }
 }
 
@@ -110,6 +112,7 @@ export async function login(username, password) {
         }
 
         localStorage.setItem("access_token", data.access);
+        localStorage.setItem("user", JSON.stringify(data.user))
 
         return data;
     } catch (err) {
@@ -122,4 +125,12 @@ export async function searchTask(input){
     const res = await response.json()
     return res;
 
+}
+
+export async function deleteTask(id) {
+    const options = {
+        method: "DELETE"
+    }
+    const res = await fetchWithAuth(`/task/${id}/`, options);
+    return res;
 }

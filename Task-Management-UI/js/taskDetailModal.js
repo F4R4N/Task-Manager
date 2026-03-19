@@ -1,7 +1,7 @@
 import { fetchTask } from "./api.js";
 import { formatDateTime } from "./helper.js";
 
-function closeTaskDetailModal(modal) {
+export function closeTaskDetailModal(modal) {
     modal.classList.remove('is-visible');
     document.body.style.overflow = '';
 }
@@ -19,12 +19,12 @@ function openTaskModal(modal, taskData) {
                 <div class="task-detail-item">
                     <strong>Assignee:</strong>
                     ${taskData.assignee
-                        ? `<span>
+                ? `<span>
                             <img src="${taskData.assignee.gravatar}" alt="${taskData.assignee.username} Profile Picture" class="assignee-avatar"> 
                             ${taskData.assignee.username}
                            </span>`
-                        : '<span>N/A</span>'
-                    }
+                : '<span>N/A</span>'
+            }
                 </div>
                 <div class="task-detail-item">
                     <strong>Priority:</strong>
@@ -51,8 +51,26 @@ export async function showDetailModal(taskId) {
     const modal = document.getElementById("taskModal");
     const closeButton = modal.querySelector(".close-btn");
 
+    modal.querySelector("#deleteBtn").dataset.id = taskId;
+    modal.querySelector("#editBtn").dataset.id = taskId;
+
     const task = await fetchTask(taskId);
     openTaskModal(modal, task);
+    // action buttons configs
+    const user = JSON.parse(localStorage.getItem("user"));
+    const actionContainer = modal.querySelector(".action-container");
+    if (user != null) {
+        if (task.owner.id === user.id) {
+            actionContainer.style.display = "flex";
+        } else {
+            actionContainer.style.display = "none";
+        }
+    } else {
+        actionContainer.style.display = "none";
+    }
+
+
+    
 
     closeButton.addEventListener("click", () => {
         closeTaskDetailModal(modal);
