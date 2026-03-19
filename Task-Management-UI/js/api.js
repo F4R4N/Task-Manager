@@ -11,10 +11,9 @@ export async function fetchTask(id) {
 }
 
 export async function createTask(task) {
-    const response = await fetch(`${API_BASE}/task/`, {
+    const response = await fetchWithAuth('/task/', {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(task),
+        body: JSON.stringify(task)
     });
     return response.json();
 }
@@ -26,6 +25,10 @@ function getAccessToken() {
 function setAccessToken(token) {
     localStorage.setItem("access_token", token);
 }
+
+function removeLocalStorageItem(item) { 
+    localStorage.removeItem(item);
+ }
 
 async function refreshAccessToken() {
     const res = await fetch(`${API_BASE}/auth/refresh/`, {
@@ -65,11 +68,9 @@ export async function fetchWithAuth(url, options = {}) {
             res = await fetch(`${API_BASE}${url}`, options);
 
         } catch (err) {
-            localStorage.removeItem("access_token");
-            
+            removeLocalStorageItem("access_token");
         }
     }
-
     return res;
 }
 
@@ -84,13 +85,12 @@ export async function logout() {
             console.warn("Logout request failed:", res.status);
         }
 
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("user");
-
+        removeLocalStorageItem("access_token");
+        removeLocalStorageItem("user");
     } catch (err) {
         console.error("Error during logout:", err);
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("user");
+        removeLocalStorageItem("access_token");
+        removeLocalStorageItem("user");
     }
 }
 
@@ -111,7 +111,7 @@ export async function login(username, password) {
             throw new Error(data.detail || "Login failed");
         }
 
-        localStorage.setItem("access_token", data.access);
+        setAccessToken(data.access);
         localStorage.setItem("user", JSON.stringify(data.user))
 
         return data;
