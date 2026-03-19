@@ -48,7 +48,7 @@ function openTaskModal(modal, taskData) {
 }
 
 export async function showDetailModal(taskId) {
-    const modal = document.getElementById("taskModal");
+    const modal = document.getElementById("sideModal");
     const closeButton = modal.querySelector(".close-btn");
 
     modal.querySelector("#deleteBtn").dataset.id = taskId;
@@ -68,10 +68,6 @@ export async function showDetailModal(taskId) {
     } else {
         actionContainer.style.display = "none";
     }
-
-
-    
-
     closeButton.addEventListener("click", () => {
         closeTaskDetailModal(modal);
     });
