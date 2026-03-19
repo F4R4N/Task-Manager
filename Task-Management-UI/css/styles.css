@@ -406,6 +406,10 @@ textarea {
     line-height: 1.6;
 }
 
+#modalHeader{
+    margin: 20px 20px 0;
+}
+
 @keyframes slide-in-right {
     from {
         transform: translateX(100%);
@@ -450,4 +454,9 @@ textarea {
 .task-modal form{
     display: flex;
     flex-direction: column;
+}
+
+.confirm-delete{
+    display: none;
+    align-self: flex-end;
 }
