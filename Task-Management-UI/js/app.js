@@ -1,6 +1,6 @@
 import { loadNavbar } from '../components/navbar/navbar.js';
 import { loadSideMenu } from "../components/sideMenu/sideMenu.js";
-import { renderAllTasks, showAddTaskButtons } from "../components/Tasks.js"
+import { renderAllTasks, showAddTaskButtons } from "../js/Tasks.js"
 import { fetchWithAuth, deleteTask } from './api.js';
 import { renderSearchModal } from './searchModal.js';
 import { renderModal, readModalFields } from './mainModal.js';
