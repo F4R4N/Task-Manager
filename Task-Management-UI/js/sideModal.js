@@ -1,5 +1,5 @@
 import { fetchTask } from "./api.js";
-import { formatDateTime } from "./helper.js";
+import { capitalize, formatDateTime } from "./helper.js";
 
 export function closeTaskDetailModal(modal) {
     modal.classList.remove('is-visible');
@@ -28,11 +28,11 @@ function openTaskModal(modal, taskData) {
                 </div>
                 <div class="task-detail-item">
                     <strong>Priority:</strong>
-                    <span class="badge badge-${taskData.priority}">${taskData.priority}</span>
+                    <span class="badge badge-${taskData.priority}">${capitalize(taskData.priority)}</span>
                 </div>
                 <div class="task-detail-item">
                     <strong>Status:</strong>
-                    <span>${(taskData.status[0].toUpperCase() + taskData.status.slice(1)).replace("_", " ")}</span>
+                    <span>${(capitalize(taskData.status)).replace("_", " ")}</span>
                 </div>
                 <div class="task-detail-item">
                     <strong>Created:</strong>

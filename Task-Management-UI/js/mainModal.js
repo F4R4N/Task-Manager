@@ -1,4 +1,5 @@
 import { fetchWithAuth, createTask } from "./api.js";
+import { capitalize } from "./helper.js";
 
 export async function readModalFields(modal) {
     const actionBtn = modal.querySelector("#modalActionBtn");
@@ -52,7 +53,7 @@ export async function renderModal(action, taskId, status) {
         if (action === "create") {
             modal.querySelector("#modalHeader").textContent = "Create Task"
             modal.querySelector('#statusSelect').value = status;
-            actionBtn.textContent = action[0].toUpperCase() + action.slice(1);
+            actionBtn.textContent = capitalize(action);
             modal.querySelector(".task-modal").classList.remove("hide");
         }
     }

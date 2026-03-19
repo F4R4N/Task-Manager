@@ -16,6 +16,10 @@ export function formatDateTime(isoDateTime){
     });
 }
 
+export function capitalize(str){
+    return str[0].toUpperCase() + str.slice(1);
+}
+
 export function loadComponentCSS(id, src){
     if (!document.getElementById(id)) {
         const link = document.createElement("link");
