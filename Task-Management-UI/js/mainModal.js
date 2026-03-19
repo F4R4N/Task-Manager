@@ -22,6 +22,8 @@ function hideChildren(el) {
 export async function renderModal(action, taskId, status) {
     const modal = document.getElementById("modalOverlay");
     const actionBtn = modal.querySelector("#modalActionBtn");
+    actionBtn.dataset.action = action;
+    actionBtn.textContent = capitalize(action);
     modal.style.display = 'flex';
 
     Array.from(modal.querySelector(".modal-content").children).forEach(child => {
@@ -29,35 +31,46 @@ export async function renderModal(action, taskId, status) {
     });
 
     if (action === "delete") {
-        modal.querySelector("#modalHeader").textContent = "Are you sure you want to delete this task?";
-        const confirmDeleteBtn = modal.querySelector("button");
-        confirmDeleteBtn.dataset.id = taskId;
-        confirmDeleteBtn.classList.remove("hide");
+        renderDeleteModal(modal, taskId);
     } else if (action === "search") {
-        modal.querySelector("#modalHeader").textContent = "Search Task";
-        modal.querySelector(".search-modal").classList.remove("hide");
-        modal.querySelector("#searchInput").focus();
+        renderSearchModal(modal);
     } else {
-        const usersRes = await fetchWithAuth("/users");
-        const users = await usersRes.json();
-        const assigneesSelect = modal.querySelector("#assigneeSelect")
-        assigneesSelect.innerHTML = "";
-        users.unshift({ id: null, username: null, email: null })
-        users.forEach(user => {
-            const option = document.createElement("option");
-            option.value = user.id || "";
-            option.textContent = `${user.username || "--"} ${user.username ? `(${user.email})` : ""}`;
-            assigneesSelect.appendChild(option)
-        });
-        actionBtn.dataset.action = action;
+        fillAssigneeSelect(modal);
         if (action === "create") {
             modal.querySelector("#modalHeader").textContent = "Create Task"
             modal.querySelector('#statusSelect').value = status;
-            actionBtn.textContent = capitalize(action);
             modal.querySelector(".task-modal").classList.remove("hide");
+        } else{
+            
         }
     }
-
-    document.getElementById("modalActionBtn").style.display = "block";
-
 }
+
+async function fillAssigneeSelect(modal) {
+    const usersRes = await fetchWithAuth("/users");
+    const users = await usersRes.json();
+    const assigneesSelect = modal.querySelector("#assigneeSelect")
+    assigneesSelect.innerHTML = "";
+    users.unshift({ id: null, username: null, email: null })
+
+    users.forEach(user => {
+        const option = document.createElement("option");
+        option.value = user.id || "";
+        option.textContent = `${user.username || "--"} ${user.username ? `(${user.email})` : ""}`;
+        assigneesSelect.appendChild(option)
+    });
+}
+
+function renderSearchModal(modal) {
+    modal.querySelector("#modalHeader").textContent = "Search Task";
+    modal.querySelector(".search-modal").classList.remove("hide");
+    modal.querySelector("#searchInput").focus();
+}
+
+function renderDeleteModal(modal, taskId) {
+    modal.querySelector("#modalHeader").textContent = "Are you sure you want to delete this task?";
+    const confirmDeleteBtn = modal.querySelector("button");
+    confirmDeleteBtn.dataset.id = taskId;
+    confirmDeleteBtn.classList.remove("hide");
+}
+
