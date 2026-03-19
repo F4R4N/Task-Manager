@@ -14,7 +14,6 @@ loginForm.addEventListener("submit", async (e) => {
         window.location.href = "index.html";
 
     } catch (err) {
-        console.error(err);
         errorMsg.textContent = err.message || "An error occurred. Please try again.";
     }
 });
