@@ -1,6 +1,6 @@
 import { loadNavbar } from '../components/navbar/navbar.js';
 import { loadSideMenu } from "../components/sideMenu/sideMenu.js";
-import { renderTasks, displayAddTask } from "../components/Tasks.js"
+import { renderAllTasks, showAddTaskButtons } from "../components/Tasks.js"
 import { fetchWithAuth, deleteTask } from './api.js';
 import { renderSearchModal } from './searchModal.js';
 import { renderModal, readModalFields } from './mainModal.js';
@@ -10,8 +10,8 @@ async function init() {
     const appContainer = document.getElementById("app");
     await loadSideMenu(appContainer);
     await loadNavbar(res);
-    await displayAddTask(res);
-    await renderTasks();
+    await showAddTaskButtons(res);
+    await renderAllTasks();
     await renderSearchModal();
     attachEventListeners();
 }

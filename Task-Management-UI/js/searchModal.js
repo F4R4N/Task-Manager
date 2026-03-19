@@ -1,9 +1,9 @@
 import { searchTask } from "./api.js";
 import { renderModal } from "./mainModal.js";
-import { fillTaskData } from "../components/Tasks.js";
+import { createTaskCard } from "../components/Tasks.js";
 
 async function addSearchResult(task) {
-    const card = fillTaskData(task);
+    const card = createTaskCard(task);
     const resultsContainer = document.querySelector(".search-results");
     resultsContainer.appendChild(card);
 }
