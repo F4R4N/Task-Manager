@@ -12,7 +12,7 @@
 <body>
     <main id="app">
         <div id="main-content" class="main-content">
-            <div class="actions">
+            <div class="main-actions-container">
                 <button class="no-pico btn new-task-btn add" data-status="todo">
                     New Task
                 </button>
@@ -22,8 +22,8 @@
             </div>
             <div class="columns">
                 <div class="column" id="todo">
-                    <div class="title">
-                        <span class="col-title">To Do</span>
+                    <div class="column-title">
+                        <span class="col-title-text">To Do</span>
                         <span class="plus add" data-status="todo">+</span>
                     </div>
                     <div class="cards">
@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="column" id="in_progress">
-                    <div class="title">
-                        <span class="col-title">In Progress</span>
+                    <div class="column-title">
+                        <span class="col-title-text">In Progress</span>
                         <span class="plus add" data-status="in_progress">+</span>
                     </div>
                     <div class="cards">
@@ -41,8 +41,8 @@
                     </div>
                 </div>
                 <div class="column" id="review">
-                    <div class="title">
-                        <span class="col-title">Review</span>
+                    <div class="column-title">
+                        <span class="col-title-text">Review</span>
                         <span class="plus add" data-status="review">+</span>
                     </div>
                     <div class="cards">
@@ -50,8 +50,8 @@
                     </div>
                 </div>
                 <div class="column" id="done">
-                    <div class="title">
-                        <span class="col-title">Done</span>
+                    <div class="column-title">
+                        <span class="col-title-text">Done</span>
                         <span class="plus add" data-status="done">+</span>
                     </div>
                     <div class="cards">
@@ -69,9 +69,6 @@
                     <button class="btn delete-btn confirm-delete hide">Delete</button>
                     <div class="task-modal hide">
                         <form method="post" id="taskForm">
-                            <div class="modal-header">
-                            </div>
-
                             <div class="modal-section">
                                 <label for="title">Title:</label>
                                 <input type="text" id="title" maxlength="100" minlength="5" required />
@@ -123,7 +120,7 @@
         <!-- side modal (task detail modal) -->
         <div id="sideModal" class="side-modal">
             <div class="modal-content-right">
-                <span class="close-btn">&times;</span>
+                <span class="close-btn" id="sideModalCloseBtn">&times;</span>
                 <div id="modalTaskContent">
                     <p>Loading task details...</p>
                 </div>
