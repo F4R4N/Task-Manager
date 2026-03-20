@@ -6,7 +6,7 @@ export function closeTaskDetailModal(modal) {
     document.body.style.overflow = '';
 }
 
-function openTaskModal(modal, taskData) {
+function openSideModal(modal, taskData) {
     const modalTaskContent = document.getElementById("modalTaskContent");
     modalTaskContent.innerHTML = '';
     if (taskData) {
@@ -48,15 +48,17 @@ function openTaskModal(modal, taskData) {
 }
 
 export async function showDetailModal(taskId) {
-    const modal = document.getElementById("sideModal");
-    const closeButton = modal.querySelector(".close-btn");
-
-    modal.querySelector("#deleteBtn").dataset.id = taskId;
-    modal.querySelector("#editBtn").dataset.id = taskId;
+    const sideModal = document.getElementById("sideModal");
+    document.getElementById("modalOverlay").style.display = "none";
+    sideModal.querySelector("#deleteBtn").dataset.id = taskId;
+    sideModal.querySelector("#editBtn").dataset.id = taskId;
 
     const task = await fetchTask(taskId);
-    openTaskModal(modal, task);
-    // action buttons configs
+    openSideModal(sideModal, task);
+    renderActionButtons(sideModal, task);
+}
+
+function renderActionButtons(modal, task) {
     const user = JSON.parse(localStorage.getItem("user"));
     const actionContainer = modal.querySelector(".action-container");
     if (user != null) {
@@ -68,19 +70,4 @@ export async function showDetailModal(taskId) {
     } else {
         actionContainer.style.display = "none";
     }
-    closeButton.addEventListener("click", () => {
-        closeTaskDetailModal(modal);
-    });
-
-    modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            closeTaskDetailModal(modal);
-        }
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && modal.classList.contains('is-visible')) {
-            closeTaskDetailModal(modal);
-        }
-    });
 }
