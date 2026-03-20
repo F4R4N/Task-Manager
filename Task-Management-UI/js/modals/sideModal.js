@@ -1,5 +1,5 @@
-import { fetchTask } from "./api.js";
-import { capitalize, formatDateTime } from "./helper.js";
+import { fetchTask } from "../api/api.js";
+import { capitalize, formatDateTime } from "../utils/helper.js";
 
 export function closeTaskDetailModal(modal) {
     modal.classList.remove('is-visible');

@@ -1,11 +1,11 @@
 import { renderUserMenu } from "../userMenu/userMenu.js";
-import { loadComponentCSS } from "../../js/helper.js";
+import { loadComponentCSS } from "../../js/utils/helper.js";
 
 
 export async function renderUserNavbar(res) {
     const container = document.getElementById("navbarUser");
 
-    if (res.ok) {
+    if (res && res.ok) {
         const user = await res.json();
         renderUserMenu(container, user);
     } else {

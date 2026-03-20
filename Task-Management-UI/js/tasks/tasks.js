@@ -1,7 +1,7 @@
-import { fetchTasks } from "../js/api.js";
-import { capitalize, formatDate } from "../js/helper.js"
-import { renderModal } from "../js/mainModal.js";
-import { showDetailModal } from "../js/sideModal.js";
+import { fetchTasks } from "../api/api.js";
+import { capitalize, formatDate } from "../utils/helper.js"
+import { renderModal } from "../modals/mainModal.js";
+import { showDetailModal } from "../modals/sideModal.js";
 
 
 export function createTaskCard(task) {
@@ -50,17 +50,17 @@ export async function renderAllTasks() {
     tasks.forEach(task => addCardToContainers(task));
 }
 
-export async function showAddTaskButtons(res) {    
+export async function showAddTaskButtons(res) {
     const addTaskBtns = document.querySelectorAll(".add");
-    if (!res.ok) {
-        addTaskBtns.forEach(btn => {
-            btn.style.display = "none";
-        });
-    } else {
+    if (res && res.ok) {
         addTaskBtns.forEach(btn => {
             btn.addEventListener("click", () => {
                 renderModal("create", null, btn.dataset.status);
             })
+        });
+    } else {
+        addTaskBtns.forEach(btn => {
+            btn.style.display = "none";
         });
     }
 }

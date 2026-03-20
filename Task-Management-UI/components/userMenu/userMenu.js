@@ -1,5 +1,5 @@
-import { logout } from "../../js/api.js";
-import { loadComponentCSS } from "../../js/helper.js";
+import { logout } from "../../js/api/api.js";
+import { loadComponentCSS } from "../../js/utils/helper.js";
 
 export async function renderUserMenu(container, user) {
     loadComponentCSS("userMenuStyle", "components/userMenu/userMenu.css")

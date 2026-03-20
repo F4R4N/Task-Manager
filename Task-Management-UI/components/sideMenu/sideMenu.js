@@ -1,4 +1,4 @@
-import { loadComponentCSS } from "../../js/helper.js";
+import { loadComponentCSS } from "../../js/utils/helper.js";
 
 
 export async function loadSideMenu(container) {
