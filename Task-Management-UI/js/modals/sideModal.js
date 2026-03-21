@@ -1,4 +1,4 @@
-import { fetchTask } from "../api/api.js";
+import { fetchTask, fetchWithAuth } from "../api/api.js";
 import { capitalize, formatDateTime } from "../utils/helper.js";
 
 export function closeTaskDetailModal(modal) {
@@ -58,12 +58,17 @@ export async function showDetailModal(taskId) {
     renderActionButtons(sideModal, task);
 }
 
-function renderActionButtons(modal, task) {
-    const user = JSON.parse(localStorage.getItem("user"));
+async function renderActionButtons(modal, task) {
+    const res = await fetchWithAuth("/auth/account/");
     const actionContainer = modal.querySelector(".action-container");
-    if (user != null) {
-        if (task.owner.id === user.id) {
-            actionContainer.style.display = "flex";
+    if (res.ok) {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user != null) {
+            if (task.owner.id === user.id) {
+                actionContainer.style.display = "flex";
+            } else {
+                actionContainer.style.display = "none";
+            }
         } else {
             actionContainer.style.display = "none";
         }
