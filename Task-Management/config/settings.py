@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
+    'pytest_django',
     "task.apps.TaskConfig",
     "customauth.apps.CustomauthConfig",
 
