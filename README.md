@@ -32,6 +32,11 @@
 
 3. Open the url in your terminal on your browser (<http://127.0.0.1:8000/>)
 
+## How to test
+
+1. Navigate to the root directory of the backend project (Task-Management)
+2. run `pytest`
+
 ## Design Notes and Choices
 
 ### Backend
