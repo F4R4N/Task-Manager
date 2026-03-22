@@ -332,6 +332,8 @@ button:disabled {
     height: auto;
     margin-bottom: 0.4rem;
     background-color: rgb(28, 33, 44);
+    border: solid 1px var(--border-color);
+    color: var(--text-color);
 }
 
 textarea {
