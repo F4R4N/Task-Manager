@@ -15,7 +15,6 @@ import os
 from datetime import timedelta
 from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,7 +28,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = list(os.environ.get("ALLOWED_HOSTS").split(", "))
 
 
 # Application definition
@@ -152,8 +151,6 @@ SIMPLE_JWT = {
 }
 GRAVATAR_URL = "https://www.gravatar.com/avatar/"
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500",
-]
+CORS_ALLOWED_ORIGINS = list(os.environ.get("CORS_ALLOWED_ORIGINS").split(", "))
 
 CORS_ALLOW_CREDENTIALS = True
