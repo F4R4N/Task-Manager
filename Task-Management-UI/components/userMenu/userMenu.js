@@ -32,7 +32,7 @@ export async function renderUserMenu(container, user) {
         logoutBtn.addEventListener("click", async (e) => {
             e.preventDefault();
             await logout();
-            // window.location.href = "login.html";
+            window.location.href = "index.html";
         });
 
     } catch (err) {

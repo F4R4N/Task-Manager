@@ -15,7 +15,11 @@ export function attachEventListeners() {
             renderModal("edit", e.target.dataset.id)
         }
         if (e.target.matches('.confirm-delete')) {
+            const confirmDeleteBtn = document.querySelector(".confirm-delete")
+            confirmDeleteBtn.disabled = true;
             deleteTask(e.target.dataset.id);
+            confirmDeleteBtn.disabled = false;
+            window.location.href = "index.html";
         }
         if (e.target.matches("#closeBtn")) {
             mainModal.style.display = 'none'
@@ -35,8 +39,12 @@ export function attachEventListeners() {
     document.addEventListener("submit", (e) => {
         if (e.target.matches("#taskForm")) {
             e.preventDefault();
+            const actionBtn = document.getElementById("modalActionBtn");
+            actionBtn.disabled = true;
             const id = document.getElementById("editBtn").dataset.id;
             readModalFields(mainModal, id);
+            actionBtn.disabled = false;
+            window.location.href = "index.html"
         }
     });
     document.addEventListener("keydown", (event) => {

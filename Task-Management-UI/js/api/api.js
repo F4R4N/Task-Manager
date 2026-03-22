@@ -1,4 +1,6 @@
 const API_BASE = "http://backend.far-tmanager.runflare.run";
+// const API_BASE = "http://127.0.0.1:8000";
+
 
 export async function fetchTasks() {
     const response = await fetch(`${API_BASE}/task/`);
@@ -26,9 +28,9 @@ function setAccessToken(token) {
     localStorage.setItem("access_token", token);
 }
 
-function removeLocalStorageItem(item) { 
+function removeLocalStorageItem(item) {
     localStorage.removeItem(item);
- }
+}
 
 async function refreshAccessToken() {
     const res = await fetch(`${API_BASE}/auth/refresh/`, {
@@ -82,7 +84,8 @@ export async function logout() {
         });
 
         if (!res.ok) {
-            console.warn("Logout request failed:", res.status);
+            const d = await res.json();
+            console.warn("Logout request failed:", d);
         }
 
         removeLocalStorageItem("access_token");
@@ -120,7 +123,7 @@ export async function login(username, password) {
     }
 }
 
-export async function searchTask(input){
+export async function searchTask(input) {
     const response = await fetch(`${API_BASE}/task/?search=${input}`);
     const res = await response.json()
     return res;
