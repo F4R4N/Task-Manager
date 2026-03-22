@@ -18,6 +18,10 @@ body {
     color: var(--text-color);
 }
 
+label, h2{
+    color: rgb(224, 227, 231);
+}
+
 #app {
     padding: 70px 0 0 0;
 
@@ -46,6 +50,11 @@ body {
     .search-btn {
         margin: 0 1rem;
     }
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .no-pico {
@@ -322,6 +331,7 @@ body {
     padding: 8px 12px;
     height: auto;
     margin-bottom: 0.4rem;
+    background-color: rgb(28, 33, 44);
 }
 
 textarea {
