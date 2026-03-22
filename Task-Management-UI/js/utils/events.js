@@ -7,7 +7,7 @@ export function attachEventListeners() {
     const mainModal = document.getElementById("modalOverlay");
     const sideModal = document.getElementById("sideModal");
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", async (e) => {
         if (e.target.matches("#deleteBtn")) {
             renderModal("delete", e.target.dataset.id)
         }
@@ -17,7 +17,7 @@ export function attachEventListeners() {
         if (e.target.matches('.confirm-delete')) {
             const confirmDeleteBtn = document.querySelector(".confirm-delete")
             confirmDeleteBtn.disabled = true;
-            deleteTask(e.target.dataset.id);
+            await deleteTask(e.target.dataset.id);
             confirmDeleteBtn.disabled = false;
             window.location.href = "index.html";
         }
