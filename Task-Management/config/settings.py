@@ -51,9 +51,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -152,5 +152,4 @@ SIMPLE_JWT = {
 GRAVATAR_URL = "https://www.gravatar.com/avatar/"
 
 CORS_ALLOWED_ORIGINS = list(os.environ.get("CORS_ALLOWED_ORIGINS").split(", "))
-
 CORS_ALLOW_CREDENTIALS = True
