@@ -44,7 +44,6 @@ export function attachEventListeners() {
             const id = document.getElementById("editBtn").dataset.id;
             readModalFields(mainModal, id);
             actionBtn.disabled = false;
-            window.location.href = "index.html"
         }
     });
     document.addEventListener("keydown", (event) => {

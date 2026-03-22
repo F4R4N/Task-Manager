@@ -11,10 +11,13 @@ export async function readModalFields(modal, id) {
         "assignee_id": modal.querySelector("#assigneeSelect").value
     }
     if (actionBtn.dataset.action === "create") {
-        createTask(data);
+        await createTask(data);
+
     } else if (actionBtn.dataset.action === "edit") {
-        editTask(id, data)
+        await editTask(id, data)
     }
+    window.location.href = "index.html"
+
 }
 
 function hideChildren(el) {
@@ -104,7 +107,7 @@ function clearModalInputs(modal) {
 
     const assigneeSelect = modal.querySelector("#assigneeSelect");
     assigneeSelect.querySelector('option:first-child').selected = true;
-    
+
     const statusSelect = modal.querySelector("#statusSelect");
     statusSelect.querySelector('option[value="todo"]').selected = true;
 
