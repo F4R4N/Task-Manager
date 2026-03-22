@@ -3,6 +3,7 @@
     --secondary-bg: #0f172a;
     --border-color: rgba(128, 128, 128, 0.387);
     --box-shadow-color: rgba(0, 0, 0, 0.4);
+    --text-color: rgb(194, 199, 208);
     --low-priority-color: rgb(72, 187, 120);
     --medium-priority-color: rgb(251, 191, 36);
     --high-priority-color: rgb(239, 68, 68);
@@ -14,6 +15,7 @@ body {
     margin: 0;
     background: linear-gradient(180deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
     font-family: Switzer, Arial, sans-serif;
+    color: var(--text-color);
 }
 
 #app {

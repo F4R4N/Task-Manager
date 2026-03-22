@@ -3,7 +3,7 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: inherit;
+  color: rgb(194, 199, 208);
   position: relative;
   cursor: pointer;
 }
@@ -20,8 +20,8 @@
   font-weight: 500;
 }
 
-.username:hover{
-    color: #f3f3f3;
+.username:hover {
+  color: #f3f3f3;
 }
 
 .user-dropdown {
@@ -31,7 +31,7 @@
   display: none;
   flex-direction: column;
   border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   background: rgb(30, 36, 46);
 }
 

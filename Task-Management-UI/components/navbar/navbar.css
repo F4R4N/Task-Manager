@@ -11,6 +11,7 @@
     top: 0;
     z-index: 999;
     background-color: rgb(19, 22.5, 30.5);
+    color: rgb(194, 199, 208);
 }
 
 .navbar>* {
