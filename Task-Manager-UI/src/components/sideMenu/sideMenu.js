@@ -1,10 +1,10 @@
-import { loadComponentCSS } from "../../js/utils/helper.js";
+import { loadComponentCSS } from "/src/utils/helper.js";
 
 
 export async function loadSideMenu(container) {
-    loadComponentCSS("sideMenuStyle", "components/sideMenu/sideMenu.css");
+    loadComponentCSS("sideMenuStyle", "/src/components/sideMenu/sideMenu.css");
     try {
-        const res = await fetch("components/sideMenu/sideMenu.html");
+        const res = await fetch("/src/components/sideMenu/sideMenu.html");
         const html = await res.text();
         container.insertAdjacentHTML("afterbegin", html);
 

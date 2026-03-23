@@ -1,9 +1,9 @@
-import { loadNavbar } from '../components/navbar/navbar.js';
-import { loadSideMenu } from "../components/sideMenu/sideMenu.js";
-import { renderAllTasks, showAddTaskButtons } from "./tasks/tasks.js"
-import { fetchWithAuth } from './api/api.js';
-import { renderSearchModal } from './modals/searchModal.js';
-import { attachEventListeners } from './utils/events.js';
+import { loadNavbar } from '/src/components/navbar/navbar.js';
+import { loadSideMenu } from "/src/components/sideMenu/sideMenu.js";
+import { renderAllTasks, showAddTaskButtons } from "/src/tasks/tasks.js"
+import { fetchWithAuth } from '/src/api/api.js';
+import { renderSearchModal } from '/src/modals/searchModal.js';
+import { attachEventListeners } from '/src/utils/events.js';
 
 async function init() {
     const appContainer = document.getElementById("app");

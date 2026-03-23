@@ -1,4 +1,4 @@
-import { login } from "../../js/api/api.js";
+import { login } from "/src/api/api.js";
 
 const loginForm = document.getElementById("loginForm");
 const errorMsg = document.getElementById("errorMsg");
@@ -13,7 +13,7 @@ loginForm.addEventListener("submit", async (e) => {
 
     try {
         await login(username, password);
-        window.location.href = "../../index.html";
+        window.location.href = "/index.html";
 
     } catch (err) {
         errorMsg.textContent = err.message || "An error occurred. Please try again.";

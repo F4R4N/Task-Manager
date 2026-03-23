@@ -206,6 +206,7 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+Task-Manager-UI/package.json
 .vscode/
 Doc1.pdf
 Final.txt

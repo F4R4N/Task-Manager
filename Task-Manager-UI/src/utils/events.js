@@ -1,7 +1,7 @@
 
-import { renderModal, readModalFields } from '../modals/mainModal.js';
-import { closeTaskDetailModal } from '../modals/sideModal.js';
-import { deleteTask } from '../api/api.js';
+import { renderModal, readModalFields } from '/src/modals/mainModal.js';
+import { closeTaskDetailModal } from '/src/modals/sideModal.js';
+import { deleteTask } from '/src/api/api.js';
 
 export function attachEventListeners() {
     const mainModal = document.getElementById("modalOverlay");

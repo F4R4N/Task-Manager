@@ -1,5 +1,5 @@
-import { fetchWithAuth, createTask, editTask } from "../api/api.js";
-import { capitalize } from "../utils/helper.js";
+import { fetchWithAuth, createTask, editTask } from "/src/api/api.js";
+import { capitalize } from "/src/utils/helper.js";
 
 export async function readModalFields(modal, id) {
     const actionBtn = modal.querySelector("#modalActionBtn");

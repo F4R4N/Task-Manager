@@ -1,6 +1,6 @@
-import { searchTask } from "../api/api.js";
-import { renderModal } from "./mainModal.js";
-import { createTaskCard } from "../tasks/tasks.js";
+import { searchTask } from "/src/api/api.js";
+import { renderModal } from "/src/modals/mainModal.js";
+import { createTaskCard } from "/src/tasks/tasks.js";
 
 async function addSearchResult(task) {
     const card = createTaskCard(task);

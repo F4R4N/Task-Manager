@@ -1,5 +1,5 @@
-import { renderUserMenu } from "../userMenu/userMenu.js";
-import { loadComponentCSS } from "../../js/utils/helper.js";
+import { renderUserMenu } from "/src/components/userMenu/userMenu.js";
+import { loadComponentCSS } from "/src/utils/helper.js";
 
 
 export async function renderUserNavbar(res) {
@@ -10,15 +10,15 @@ export async function renderUserNavbar(res) {
         renderUserMenu(container, user);
     } else {
         container.innerHTML = `
-            <a class="btn login-btn" href="components/login/login.html">Login</a>
+            <a class="btn login-btn" href="/src/components/login/login.html">Login</a>
         `;
     }
 }
 
 export async function loadNavbar(res) {
-    loadComponentCSS("navbar", "components/navbar/navbar.css");
+    loadComponentCSS("navbar", "/src/components/navbar/navbar.css");
     try {
-        const response = await fetch('components/navbar/navbar.html');
+        const response = await fetch('/src/components/navbar/navbar.html');
         const html = await response.text();
         document.body.insertAdjacentHTML('afterbegin', html);
         const hamburger = document.getElementById("hamburgerBtn");

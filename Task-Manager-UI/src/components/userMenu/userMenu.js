@@ -1,10 +1,10 @@
-import { logout } from "../../js/api/api.js";
-import { loadComponentCSS } from "../../js/utils/helper.js";
+import { logout } from "/src/api/api.js";
+import { loadComponentCSS } from "/src/utils/helper.js";
 
 export async function renderUserMenu(container, user) {
-    loadComponentCSS("userMenuStyle", "components/userMenu/userMenu.css")
+    loadComponentCSS("userMenuStyle", "/src/components/userMenu/userMenu.css")
     try {
-        const res = await fetch("components/userMenu/userMenu.html");
+        const res = await fetch("/src/components/userMenu/userMenu.html");
         const html = await res.text();
 
         container.innerHTML = html;

@@ -1,7 +1,7 @@
-import { fetchTasks } from "../api/api.js";
-import { capitalize, formatDate } from "../utils/helper.js"
-import { renderModal } from "../modals/mainModal.js";
-import { showDetailModal } from "../modals/sideModal.js";
+import { fetchTasks } from "/src/api/api.js";
+import { capitalize, formatDate } from "/src/utils/helper.js"
+import { renderModal } from "/src/modals/mainModal.js";
+import { showDetailModal } from "/src/modals/sideModal.js";
 
 
 export function createTaskCard(task) {
