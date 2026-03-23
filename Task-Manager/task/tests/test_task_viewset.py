@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 from rest_framework import status
 from task.tests.factories import UserFactory, TaskFactory
+import datetime
 
 
 @pytest.mark.django_db
@@ -180,6 +181,51 @@ class TestTaskViewSet:
 
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
-# TODO: NON OWNER CANT DELETE
-# TODO: OWNER SHOULD BE ABLE TO DELETE
-# TODO: TEST CREATED AT AND UPDATED AT TIMES
+    def test_successful_task_delete(self, authed_client):
+        owner = UserFactory()
+
+        task = TaskFactory(owner=owner)
+        authed_client.force_authenticate(user=owner)
+        tasks = authed_client.get(
+            reverse("task:task-list"), format="json"
+        )
+        assert len(tasks.data) == 1
+        response = authed_client.delete(
+            reverse("task:task-detail", kwargs={"pk": task.id}),
+            format="json"
+        )
+        updated_tasks = authed_client.get(
+            reverse("task:task-list"), format="json"
+        )
+        assert response.status_code == status.HTTP_204_NO_CONTENT
+        assert len(updated_tasks.data) == 0
+
+    def test_non_owner_task_delete(self, authed_client):
+        owner = UserFactory()
+        non_owner = UserFactory()
+
+        task = TaskFactory(owner=owner)
+        authed_client.force_authenticate(user=non_owner)
+        tasks = authed_client.get(
+            reverse("task:task-list"), format="json"
+        )
+        assert len(tasks.data) == 1
+        response = authed_client.delete(
+            reverse("task:task-detail", kwargs={"pk": task.id}),
+            format="json"
+        )
+        updated_tasks = authed_client.get(
+            reverse("task:task-list"), format="json"
+        )
+        assert response.status_code == status.HTTP_403_FORBIDDEN
+        assert len(updated_tasks.data) == 1
+
+    def test_created_at_time(self, authed_client):
+        task = TaskFactory()
+
+        now_utc = datetime.datetime.now(datetime.timezone.utc)
+        formatted_now_utc = now_utc.strftime("%Y-%m-%d %H:%M:%S")
+
+        assert (
+            task.created_at.strftime("%Y-%m-%d %H:%M:%S") == formatted_now_utc
+        )
