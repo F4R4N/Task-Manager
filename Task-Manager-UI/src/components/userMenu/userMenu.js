@@ -1,13 +1,21 @@
 import { logout } from "/src/api/api.js";
-import { loadComponentCSS } from "/src/utils/helper.js";
+import './userMenu.css';
+
+const userMenuHtml = `
+    <div class="user-info" id="userMenu">
+        <div class="user-toggle">
+            <img src="" class="avatar">
+            <span class="username"></span>
+        </div>
+        <div class="user-dropdown">
+            <a href="#" id="logoutBtn" class="no-pico btn">Logout</a>
+        </div>
+    </div>
+`;
 
 export async function renderUserMenu(container, user) {
-    loadComponentCSS("userMenuStyle", "/src/components/userMenu/userMenu.css")
     try {
-        const res = await fetch("/src/components/userMenu/userMenu.html");
-        const html = await res.text();
-
-        container.innerHTML = html;
+        container.innerHTML = userMenuHtml;
 
         const userMenu = container.querySelector("#userMenu");
         const avatar = userMenu.querySelector(".avatar");
