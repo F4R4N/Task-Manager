@@ -1,26 +1,24 @@
 # Task-Manager
 
-## How To Setup
-
-### Windows
+## How To Run Backend
 
 1. Install python
-2. Execute:
+2. Execute
 
     ``` bash
-    python -m venv venv
-    source venv/Script/activate
-    pip install -r requirements.txt
-    python manage.py migrate
-    python manage.py runserver
+        cd Task-Manager
+        touch .env
     ```
 
-3. Open the url in your terminal on your browser (<http://127.0.0.1:8000/>)
+3. add these lines in the .env file and configure accordingly:
 
-### Linux
+    ``` bash
+    SECRET_KEY=secret_key
+    ALLOWED_HOSTS=127.0.0.1, localhost
+    CORS_ALLOWED_ORIGINS=http://localhost:5173
+    ```
 
-1. Install python
-2. Execute:
+4. Execute:
 
     ``` bash
     python3 -m venv venv
@@ -30,7 +28,13 @@
     python3 manage.py runserver
     ```
 
-3. Open the url in your terminal on your browser (<http://127.0.0.1:8000/>)
+5. Open the url in your terminal on your browser (<http://127.0.0.1:8000/>)
+
+## How To Run UI
+
+1. `cd Task-Manager-UI`
+2. `echo "VITE_API_BASE="http://127.0.0.1:8000" > .env`
+3. `npm run dev`
 
 ## How to test
 
