@@ -1,0 +1,463 @@
+:root {
+    --primary-bg: rgb(30, 36, 46);
+    --secondary-bg: #0f172a;
+    --border-color: rgba(128, 128, 128, 0.387);
+    --box-shadow-color: rgba(0, 0, 0, 0.4);
+    --text-color: rgb(194, 199, 208);
+    --low-priority-color: rgb(72, 187, 120);
+    --medium-priority-color: rgb(251, 191, 36);
+    --high-priority-color: rgb(239, 68, 68);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(180deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    font-family: Switzer, Arial, sans-serif;
+    color: var(--text-color);
+}
+
+label, h2{
+    color: rgb(224, 227, 231);
+}
+
+#app {
+    padding: 70px 0 0 0;
+
+}
+
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.no-pico {
+    all: unset;
+    cursor: pointer;
+}
+
+.main-content {
+    margin: 0 0 0 240px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+
+/* main action section style */
+.main-actions-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.search-btn {
+    align-self: flex-end;
+    margin-right: 2rem;
+}
+
+/* main content style */
+.columns {
+    display: flex;
+    height: calc(100vh - 140px);
+    gap: 1rem;
+    margin: 0.5rem 2rem 0 0;
+}
+
+.column {
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    width: 360px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    flex: 1;
+    height: 100%;
+    box-shadow: 0 2px 6px var(--box-shadow-color);
+}
+
+.column-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 6px;
+}
+
+.col-title-text {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.column-title .plus {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 20px;
+    padding: 6px 10px;
+}
+
+/* Task card style */
+.cards {
+    overflow-y: auto;
+}
+
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: rgba(37, 43, 52, 0.43)
+}
+
+.card-title {
+    margin: 15px 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    min-height: 50.375px;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.created-at {
+    font-size: 12.1px;
+    margin: 0 12px;
+    display: block;
+    color: gray;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.assignee {
+    align-self: flex-end;
+    margin: 20px 10px 10px;
+}
+
+.assignee-username {
+    font-size: 15px;
+    margin-right: 6px;
+}
+
+.assignee-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    font-size: 0.7rem;
+}
+
+/* buttons style */
+.btn {
+    width: fit-content;
+    height: fit-content;
+    display: block;
+    font-size: 0.75rem;
+    padding: 8px 20px;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8%;
+    color: #aaa;
+    font-weight: 700;
+    align-content: center;
+}
+
+.btn:hover {
+    background-color: rgb(44, 50, 60);
+
+}
+
+/* badges style */
+.badge {
+    display: inline-block;
+    padding: 0.3rem 0.40rem;
+    font-size: 0.60rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1;
+    width: fit-content;
+    margin: 20px 10px 10px;
+    align-self: flex-start;
+}
+
+.badge-low {
+    background-color: rgba(72, 187, 120, 0.2);
+    color: var(--low-priority-color);
+}
+
+.badge-medium {
+    background-color: rgba(251, 191, 36, 0.2);
+    color: var(--medium-priority-color);
+}
+
+.badge-high {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: var(--high-priority-color);
+}
+
+/* modal */
+#modalOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background: linear-gradient(180deg,
+            var(--primary-bg) 0%,
+            var(--secondary-bg) 100%);
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 700px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+
+.close-btn:hover {
+    color: white;
+}
+
+#modalHeader {
+    margin: 20px 20px 0;
+}
+
+.modal-content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+/* delete modal style */
+.confirm-delete {
+    align-self: flex-end;
+}
+
+.delete-btn {
+    background-color: rgb(112, 16, 16);
+    color: #ffffffc5;
+}
+
+.delete-btn:hover {
+    color: #fffffffd;
+    background-color: rgb(149, 21, 21);
+}
+
+/* create modal style */
+.task-modal form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-section {
+    margin: 15px 15px 0;
+}
+
+.submit-btn {
+    align-self: flex-end;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 8px 25px;
+    margin: 10px 15px;
+}
+
+.modal select,
+.modal input,
+.modal textarea {
+    font-size: 0.85rem;
+    font-weight: 400;
+    padding: 8px 12px;
+    height: auto;
+    margin-bottom: 0.4rem;
+    background-color: rgb(28, 33, 44);
+    border: solid 1px var(--border-color);
+    color: var(--text-color);
+}
+
+textarea {
+    max-height: 110px;
+    overflow-y: auto;
+}
+
+.modal label {
+    font-weight: bold;
+}
+
+/* search modal */
+.search-modal {
+    display: flex;
+    margin: 30px 0;
+    flex-direction: column;
+
+}
+
+.search-results {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.no-results {
+    justify-self: center;
+    margin-top: 3rem;
+}
+
+.hide {
+    display: none;
+}
+
+/* side modal (task detail modal) */
+.side-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--box-shadow-color);
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.modal-content-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #131111;
+    margin: 0;
+    padding: 20px;
+    border-left: 1px solid #88888868;
+    width: 800px;
+    max-width: 80%;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    animation: slide-in-right 0.4s forwards;
+    overflow-y: auto;
+}
+
+#modalTaskContent h2 {
+    color: #ddd;
+    margin-top: 20px;
+}
+
+#modalTaskContent p {
+    color: #ddd;
+    line-height: 1.6;
+}
+
+.task-detail-item {
+    margin-bottom: 15px;
+    color: #ddd;
+    font-size: 0.95rem;
+}
+
+.task-detail-item strong {
+    color: #ddd;
+    margin-bottom: 6px;
+}
+
+.action-container {
+    align-self: flex-end;
+    display: flex;
+    gap: 25px;
+    margin: 20px;
+
+}
+
+.side-modal.is-visible {
+    display: block;
+    opacity: 1;
+    animation: fade-in 0.4s forwards;
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .columns {
+        height: 2400px;
+        flex-direction: column;
+        margin: 1rem;
+    }
+
+    .column {
+        height: 750px;
+        width: 100%;
+    }
+
+    .new-task-btn {
+        margin-left: 20px;
+    }
+
+    .search-btn {
+        margin: 0 1rem;
+    }
+}
