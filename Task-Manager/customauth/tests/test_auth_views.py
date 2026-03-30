@@ -1,9 +1,7 @@
 import pytest
 from django.urls import reverse
 from rest_framework import status
-from task.tests.factories import UserFactory, TaskFactory
 from django.contrib.auth import get_user_model
-import datetime
 
 
 User = get_user_model()
@@ -40,7 +38,9 @@ class TestAuthViews:
             "username": "test",
             "password": "12345"
         }
-        response = unauthed_client.post(reverse("customauth:login"), body, format="json")
+        response = unauthed_client.post(
+            reverse("customauth:login"), body, format="json"
+        )
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
         assert response.cookies.get("refresh") is None
 
@@ -52,5 +52,7 @@ class TestAuthViews:
             "usernam": "test",
             "password": "12345"
         }
-        response = unauthed_client.post(reverse("customauth:login"), body, format="json")
+        response = unauthed_client.post(
+            reverse("customauth:login"), body, format="json"
+        )
         assert response.status_code == status.HTTP_400_BAD_REQUEST
