@@ -28,7 +28,9 @@ class Project(models.Model):
         max_length=60,
         validators=[MinLengthValidator(
             5, "Project name mist be at least 5 characters long."
-        )]
+        )],
+        unique=True,
+        blank=False
     )
     description = models.TextField(blank=True, null=True)
     members = models.ManyToManyField(User, through=ProjectMember)
