@@ -28,6 +28,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 class TaskSerializer(serializers.ModelSerializer):
     owner = UserSerializer(read_only=True)
     assignee = UserSerializer(read_only=True)
+    project = ProjectSerializer()
     assignee_id = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(),
         source="assignee",
