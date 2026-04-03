@@ -40,7 +40,7 @@ class ProjectViewSet(ModelViewSet):
     search_fields = ["name"]
 
     def perform_create(self, serializer):
-        project = serializer.save()
+        project = serializer.save(owner=self.request.user)
         ProjectMember.objects.create(
             user=self.request.user,
             project=project,

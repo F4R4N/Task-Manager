@@ -27,15 +27,20 @@ class Project(models.Model):
     name = models.CharField(
         max_length=60,
         validators=[MinLengthValidator(
-            5, "Project name mist be at least 5 characters long."
+            5, "Project name must be at least 5 characters long."
         )],
-        unique=True,
         blank=False
+    )
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="owned_projects"
     )
     description = models.TextField(blank=True, null=True)
     members = models.ManyToManyField(User, through=ProjectMember)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ("owner", "name")
 
     def __str__(self):
         return self.name
