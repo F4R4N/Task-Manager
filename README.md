@@ -21,11 +21,11 @@
 4. Execute:
 
     ``` bash
-    python3 -m venv venv
-    source venv/bin/activate
-    pip3 install -r requirements.txt
-    python3 manage.py migrate
-    python3 manage.py runserver
+    python3 -m venv venv (for windows: python -m venv venv)
+    source venv/bin/activate (for windows: source venv\Scripts\activate)
+    pip3 install -r requirements.txt (for windows: pip install -r requirements.txt)
+    python3 manage.py migrate (for windows: python manage.py migrate)
+    python3 manage.py runserver (for windows: python manage.py runserver)
     ```
 
 5. Open the url in your terminal on your browser (<http://127.0.0.1:8000/>)
