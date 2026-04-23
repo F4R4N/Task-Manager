@@ -30,11 +30,14 @@
 
 5. Open the url in your terminal on your browser (<http://127.0.0.1:8000/>)
 
+**Note:** Please note that I have not implemented a sign up system, as it was mentioned in the instruction that it is not needed. Please consider creating the users by `python manage.py createsuperuser` command for test purposes.
+
 ## How To Run UI
 
 1. `cd Task-Manager-UI`
-2. `echo "VITE_API_BASE="http://127.0.0.1:8000" > .env`
-3. `npm run dev`
+2. `echo 'VITE_API_BASE="http://127.0.0.1:8000"' > .env`
+3. `npm install`
+4. `npm run dev`
 
 ## How to test
 
