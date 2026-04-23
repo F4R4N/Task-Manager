@@ -17,6 +17,7 @@ Including another URLconf
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('task.urls')),
-    path("auth/", include("customauth.urls"),)
+    path('api/', include('task.urls')),
+    path("api/auth/", include("customauth.urls"),),
+    path('api-auth/', include('rest_framework.urls')),
 ]
